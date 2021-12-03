@@ -1,7 +1,7 @@
 # aptly
 A serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. It uses the Google Calendar API to fetch upcoming events.
 
-##Key Features
+## Key Features
 1. Filter events by city.
 2. Show/hide event details.
 3. Specify number of events.
@@ -9,7 +9,7 @@ A serverless, progressive web application (PWA) with React using a test-driven d
 5. Add an app shortcut to the home screen.
 6. View a chart showing the number of upcoming events by city.
 
-##User Stories
+## User Stories
 1. As a user, I would like to be able to filter events by city so that I can see the list of events
 that take place in that city.
 2. As a user, I would like to be able to show/hide event details so that I can see more/less
@@ -24,7 +24,7 @@ can open the app faster.
 city so that I know what events are organized in which city.
 
 
-##Technical Details
+## Technical Details
 1. A React application.
 2. Built using the TDD technique.
 3. Uses the Google Calendar API and OAuth2 authentication flow.
