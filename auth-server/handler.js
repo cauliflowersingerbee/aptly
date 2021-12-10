@@ -70,5 +70,8 @@ module.exports.getAuthURL = async () => {
       authUrl: authUrl,
     }),
   };
-};
 
+
+
+/*endpoint for testing: 
+https://eeah9wx4kb.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url*/
