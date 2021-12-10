@@ -19,6 +19,7 @@ const oAuth2Client = new google.auth.OAuth2(
   client_secret,
   redirect_uris[0]
 );
+
 module.exports.getAuthURL = async () => {
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
