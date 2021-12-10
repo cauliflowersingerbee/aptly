@@ -21,9 +21,9 @@
   
       <main id="container">
         <h1>OAuth2 Test</h1>
-          <h4><b>Step 1:</b> Get the Auth URL</h4>
-          <p>Click the button below to get your auth authURL.</p>
-          <button id="getCode">Get OAuth URL</button>
+          <h4><b>Step 1:</b> Get the OAuth URL</h4>
+          <p>Click the button below to get your OauthURL.</p>
+          <button id="getURL">Get OAuth URL</button>
           <p id="result"></p>
           <a id="authURL" href target="_blank">Click to authorise</a>
       
@@ -42,7 +42,7 @@
         </main>
       <script type="text/javascript">
        /*step1*/
-       const getURLElement = document.getElementById("getURL");
+        const getURLElement = document.getElementById("getURL");
         const resultElement = document.getElementById("result");
         const resultLink = document.getElementById("authURL");
         const getAuthURL = "https://eeah9wx4kb.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url";
@@ -71,10 +71,11 @@
      // if the authorization code is not URL-encoded, then URL-encode it.
         getAccessToken.onClick = function () {
          let code = codeValue.value;
+         
          if (decodeURIComponent(code) === code) {
              code = encodeURIComponent(codeValue.value);
          }
-         const getTokenRequest = getToken + code;
+         const getTokenRequest = getToken + "/" + code;
             fetch(getTokenRequest)
                 .then(function (response) {
                     return response.json();
