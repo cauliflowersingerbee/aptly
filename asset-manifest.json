@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/aptly/static/css/main.8c8b27cf.chunk.css",
+    "main.css": "/aptly/static/css/main.a617e044.chunk.css",
     "main.js": "/aptly/static/js/main.fad0db42.chunk.js",
     "main.js.map": "/aptly/static/js/main.fad0db42.chunk.js.map",
     "runtime-main.js": "/aptly/static/js/runtime-main.d6f6cc6a.js",
@@ -12,14 +12,14 @@
     "index.html": "/aptly/index.html",
     "service-worker.js": "/aptly/service-worker.js",
     "service-worker.js.map": "/aptly/service-worker.js.map",
-    "static/css/main.8c8b27cf.chunk.css.map": "/aptly/static/css/main.8c8b27cf.chunk.css.map",
+    "static/css/main.a617e044.chunk.css.map": "/aptly/static/css/main.a617e044.chunk.css.map",
     "static/js/2.7712de8c.chunk.js.LICENSE.txt": "/aptly/static/js/2.7712de8c.chunk.js.LICENSE.txt",
     "static/media/logo.103b5fa1.svg": "/aptly/static/media/logo.103b5fa1.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.d6f6cc6a.js",
     "static/js/2.7712de8c.chunk.js",
-    "static/css/main.8c8b27cf.chunk.css",
+    "static/css/main.a617e044.chunk.css",
     "static/js/main.fad0db42.chunk.js"
   ]
 }
