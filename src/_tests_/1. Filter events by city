@@ -1,0 +1,773 @@
+1. Filter events by city
+
+SCENARIO 1: WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES.
+Given user hasn’t searched for any city
+When the user opens the app
+Then the user should see a list of all upcoming events
+
+SCENARIO 2: USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY.
+Given the main page is open
+When user starts typing in the city textbox
+Then the user should see a list of cities (suggestions) that match what they’ve typed
+
+SCENARIO 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
+Given the user was typing “Berlin” in the city textbox
+And the list of suggested cities is showing
+When the user selects a city (e.g., “Berlin, Germany”) from the list
+Then their city should be changed to that city (i.e., “Berlin, Germany”)
+And the user should receive a list of upcoming events in that city
+
+//STEPS
+SCENARIO 1: WHEN USER HASN’T SEARCHED FOR A CITY, 
+SHOW UPCOMING EVENTS FROM ALL CITIES.
+
+- App.js needs child component for displaying a list of events.
+- list of events should be rendered
+
+1)
+// src/__tests__/App.test.js
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import App from '../App';
+
+describe('<App /> component', () => {
+   test('render list of events', () => { //describe test
+  const AppWrapper = shallow(<App />);  //const for rendering component
+  expect(AppWrapper.find(EventList)).toHaveLength(1);
+});
+});
+
+2) EventList not defined. Test fails. Create EventList.
+
+// src/EventList.js
+
+import React, { Component } from 'react';
+
+class EventList extends Component {
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
+
+export default EventList;
+
+3) import EventList to App.js
+
+// src/App.js
+
+import React, { Component } from 'react';
+import './App.css';
+import EventList from './EventList';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <EventList />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+4) import EventList to test
+
+// src/__tests__/App.test.js
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import App from '../App';
+import EventList from '../EventList';
+
+describe('<App /> component', () => {
+  test('render list of events', () => {
+    const AppWrapper = shallow(<App />);
+    expect(AppWrapper.find(EventList)).toHaveLength(1);
+  });
+});
+
+5) Test passes
+
+6) Refactor code 
+
+//src/EventList.js
+
+render() {
+  return (
+    <ul className="EventList">
+    </ul>
+  );
+}
+
+//writing a test that ensures there are events within your EventList:
+
+7) create a new test file for EventList
+
+// src/__tests__/EventList.test.js
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import EventList from '../EventList';
+
+describe('<EventList /> component', () => {
+  test('render correct number of events', () => {
+    const EventListWrapper = shallow(<EventList events={[{}, {}, {}, {}]} />);
+    expect(EventListWrapper.find(Event)).toHaveLength(4);
+  });
+});
+
+//This test will only pass if EventList renders exactly four 
+events from its prop events. The prop is set manually using 
+mock data, which, in this case, is a list of events that 
+contains four empty objects.
+
+8) Run test. Test fails bc you haven’t yet added any code for 
+rendering events within the EventList component. You can fix this by:
+Creating an empty Event component:
+
+// src/Event.js
+
+import React, { Component } from "react";
+
+class Event extends Component {
+  render() {
+    return <div></div>;
+  }
+}
+export default Event;
+
+
+9) Importing the Event component into the “src/EventList.js” file 
+and your “src/__tests__/EventList.test.js” file:
+
+import Event from './Event'; // in src/EventList.js
+import Event from '../Event'; // in src/__tests__/EventList.test.js
+Rendering a list of events inside the EventList's render() method in 
+“src/EventList.js” using the events prop:
+
+render() {
+  const { events } = this.props;
+  return (
+    <ul className="EventList">
+      {events.map(event =>
+        <li>
+          <Event event={event} />
+        </li>
+      )}
+    </ul>
+  );
+}
+
+10) test passes w/warning: “Each child in a list should have a 
+unique ‘key’ prop.”
+
+Fortunately, this is an easy fix. Simply go back and add a key, 
+event.id, to each child in your events list within the render() 
+method of “src/EventList.js”:
+
+<li key={event.id}>
+  <Event event={event} />
+</li>
+
+11) update your actual test. Currently, your list of events 
+contains four empty mock objects, but because each one will 
+now have an ID, you need to reflect this in the test you 
+added in “src/__tests__/EventList.test.js”:
+
+const EventListWrapper = shallow(<EventList events={[{ id: 1 }, 
+{ id: 2 }, { id: 3 }, { id: 4 }]} />);
+
+SCENARIO 2: USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY 
+SEARCH FOR A CITY.
+
+1) Just like before with EventList, this component should be 
+displayed in your App component, so let’s start by opening up 
+your App test file, “App.test.js,” and adding this test:
+
+test('render CitySearch', () => {
+  const AppWrapper = shallow(<App />);
+  expect(AppWrapper.find(CitySearch)).toHaveLength(1);
+});
+
+2) implement code to ensure the test passes, which, in this case, 
+means creating a CitySearch component. 
+
+// src/CitySearch.js
+
+import React, { Component } from 'react';
+
+class CitySearch extends Component {
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
+
+export default CitySearch;
+
+3) import your new CitySearch component into both your “App.js” 
+and “App.test.js” files. In “App.js,” this would look like:
+
+// src/App.js
+
+import React, { Component } from 'react';
+import './App.css';
+import EventList from './EventList';
+import CitySearch from './CitySearch';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <CitySearch />
+        <EventList />
+      </div>
+    );
+  }
+}
+
+export default App;
+While in “App.test.js,” this would look like:
+
+// src/__tests__/App.test.js
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import App from '../App';
+import EventList from '../EventList';
+import CitySearch from '../CitySearch';
+
+describe('<App /> component', () => {
+  test('render list of events', () => {
+    const AppWrapper = shallow(<App />);
+    expect(AppWrapper.find(EventList)).toHaveLength(1);
+  });
+
+  test('render CitySearch', () => {
+    const AppWrapper = shallow(<App />);
+    expect(AppWrapper.find(CitySearch)).toHaveLength(1);
+  });
+});
+
+4) Refactor
+
+“src/CitySearch.js”, like so:
+
+return (
+  <div className="CitySearch">
+  </div>
+);
+
+5) Refactor
+
+Replace --- const AppWrapper = shallow(<App />);
+
+// src/__tests__/App.test.js
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import App from '../App';
+import EventList from '../EventList';
+import CitySearch from '../CitySearch';
+
+describe('<App /> component', () => {
+  let AppWrapper;
+  beforeAll(() => {
+    AppWrapper = shallow(<App />);
+  });
+
+  test('render list of events', () => {
+    expect(AppWrapper.find(EventList)).toHaveLength(1);
+  });
+
+  test('render CitySearch', () => {
+    expect(AppWrapper.find(CitySearch)).toHaveLength(1);
+  });
+});
+
+6) You now have a CitySearch component, but nothing inside 
+of that component corresponds with the requirements of the 
+scenario; for instance, a textbox for users to enter their 
+search query and a list for displaying the suggestions. 
+Let’s focus on those next. 
+
+7) As these components will be inside the CitySearch 
+component, you’ll need to create a new test file, 
+“CitySearch.test.js,” inside of your “__tests__” folder.
+
+8) create a test that checks whether the CitySearch component 
+contains a textbox or not. You can assume that this textbox 
+component will have a CSS class of city:
+
+// src/__tests__/CitySearch.test.js
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import CitySearch from '../CitySearch';
+
+describe('<CitySearch /> component', () => {
+  test('render text input', () => {
+    const CitySearchWrapper = shallow(<CitySearch />);
+    expect(CitySearchWrapper.find('.city')).toHaveLength(1);
+  });
+});
+
+9) test fails: no element with the class name city could be found.
+
+10) To fix this, go back to your CitySearch component 
+(“src/CitySearch.js”), where you’ll add the missing element in question:
+
+render() {
+  return (
+    <div className="CitySearch">
+      <input
+        type="text"
+        className="city"
+      />
+    </div>
+  );
+}
+
+11) Now for the list of suggestions. 
+
+add yet another new test to your “CitySearch.test.js” test file 
+following the same format as the test you just wrote:
+
+test('renders a list of suggestions', () => {
+  const CitySearchWrapper = shallow(<CitySearch />);
+  expect(CitySearchWrapper.find('.suggestions')).toHaveLength(1);
+});
+
+12) this test checks for the existence of an element with the 
+class name suggestions. fails. 
+
+13)  Head back over to your “src/CitySearch.js” file to fix this:
+
+render() {
+  return (
+    <div className="CitySearch">
+      <input
+        type="text"
+        className="city"
+      />
+      <ul className="suggestions">
+      </ul>
+    </div>
+  );
+}
+
+14)So far, you’ve created a textbox that the user can type in, 
+as well as a list that will hold the city suggestions. But you’re 
+still missing one thing: the list of suggestions needs to be displayed.
+need mock data
+
+15)Check API documentation for data format
+
+16) create a new file called “mock-data.js” in your “src” folder and 
+export a const object variable called mockData using the following code: 
+const mockData = []. 
+
+// src/mock-data.js
+
+const mockData = [
+  {
+    "kind": "calendar#event",
+    "etag": ...
+    … 
+  },
+  {
+    "kind": "calendar#event",
+    "etag": ...
+    … 
+  }
+];
+
+export { mockData };
+
+17) you can begin writing your mock data—a bare minimum data “template,” 
+so to speak, that you’ll be able to plug into your test function to test 
+that your own functions work.
+
+As always, the first step is to write your test in “CitySearch.test.js”:
+
+test('renders text input correctly', () => {
+  const CitySearchWrapper = shallow(<CitySearch />);
+  const query = CitySearchWrapper.state('query');
+  expect(CitySearchWrapper.find('.city').prop('value')).toBe(query);
+});
+
+18) error message: “ShallowWrapper::state("query") requires that state 
+not be null or undefined,” which is essentially saying that you don’t 
+have a defined query state in your CitySearch component. To fix this, 
+start by adding the following code at the top of your CitySearch 
+component in “src/CitySearch.js”:
+
+state = {
+  query: '',
+}
+
+19) test fails bc <input> doesn’t yet derive its value from your new 
+state. Let’s do that now. Still in your “CitySearch.js” file, add a 
+new line of code, 
+
+value={this.state.query}, 
+
+to the <input> you already 
+have in place. Once finished, your <input> should look like this:
+
+<input
+  type="text"
+  className="city"
+  value={this.state.query}
+/>
+
+20) your functions currently only work if you change the state manually. 
+What you want is for a user to be able to type in a query and for the 
+state to be updated automatically to reflect this.
+
+create a new test in 
+“src/__tests__/CitySearch.test.js”, as follows:
+
+test('change state when text input changes', () => {
+  const CitySearchWrapper = shallow(<CitySearch />);
+  CitySearchWrapper.setState({
+    query: 'Munich'
+  });
+  const eventObject = { target: { value: 'Berlin' }};
+  CitySearchWrapper.find('.city').simulate('change', eventObject);
+  expect(CitySearchWrapper.state('query')).toBe('Berlin');
+});
+
+21) test fails because you didn’t update the state after changing the 
+text input. The state needs to be changed whenever the textbox changes. 
+Let’s do that now.
+
+In your “src/CitySearch.js” file (below where you defined the state), 
+define the following function, which you’ll use as the event handler 
+for <input> for the change event:
+
+handleInputChanged = (event) => {
+  const value = event.target.value;
+  this.setState({ query: value });
+}
+
+22) within your <input> tag in your CitySearch component, create 
+an event listener onChange (added as a prop in React) and pass it 
+the function you just created as its event handler 
+(this.handleInputChanged()). This will detect whether any textual 
+changes have been made on the input:
+
+<input
+  type="text"
+  className="city"
+  value={this.state.query}
+  onChange={this.handleInputChanged}
+/>
+
+23) Your final CitySearch component should look like this once 
+you’re finished:
+
+// src/CitySearch.js
+
+import React, { Component } from 'react';
+
+class CitySearch extends Component {
+  state = {
+    query: '',
+  }
+
+  handleInputChanged = (event) => {
+    const value = event.target.value;
+    this.setState({ query: value });
+  }
+
+  render() {
+    return (
+      <div className="CitySearch">
+        <input
+          type="text"
+          className="city"
+          value={this.state.query}
+          onChange={this.handleInputChanged}
+        />
+        <ul className="suggestions">
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default CitySearch;
+
+24) Textbox is finished. Now you can move on to list of suggestions. 
+If you’ll look back at the scenario, you’ll see that a list of 
+suggestions should be displayed based on the city name typed 
+in the textbox.
+
+25) Start by creating a test that verifies that the list of 
+suggestions rendered matches the list of suggestions in the 
+component state in your “CitySearch.test.js” file:
+
+  test('render list of suggestions correctly', () => {
+    const locations = extractLocations(mockData);
+    const CitySearchWrapper = shallow(<CitySearch />);
+    CitySearchWrapper.setState({ suggestions: locations });
+    const suggestions = CitySearchWrapper.state('suggestions');
+    expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
+    for (let i = 0; i < suggestions.length; i += 1) {
+      expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]);
+    }
+  });
+
+26) test fails:
+
+- There’s no extractLocations function defined anywhere
+- The state of suggestions isn’t defined in CitySearch’s state
+- CitySearch doesn't render any suggestion list items (<li>)
+
+27) Let's start by adding the function extractLocations. 
+Create a new file in your “src” folder called “api.js”. 
+You’ll use this to handle your API calls in the future. 
+For now, however, you’ll use it to store a function 
+(extractLocations) that will extract event locations out 
+of an array of events and remove duplicates:
+
+export const extractLocations = (events) => {
+  var extractLocations = events.map((event) => event.location);
+  var locations = [...new Set(extractLocations)];
+  return locations;
+};
+
+28) Inside your “CitySearch.test.js” file, import your mock data 
+using import { mockData } from './mock-data'; and your new 
+extractLocations function using import { extractLocations } from './api';:
+
+import { mockData } from '../mock-data';
+import { extractLocations } from '../api';
+With that, you’re done with the extractLocations part.
+
+29) Now, it’s time to add the suggestions state to the CitySearch component:
+
+// src/CitySearch.js
+
+import React, { Component } from 'react';
+
+class CitySearch extends Component {
+  state = {
+
+    query: '',
+    suggestions: []
+  }
+
+  // rest of the code
+
+30) ensure that you render this list in the render() function. Go ahead 
+and update <ul className="suggestions"><ul> to the following:
+
+<ul className="suggestions">
+  {this.state.suggestions.map((suggestion) => (
+    <li key={suggestion}>{suggestion}</li>
+  ))}
+  <li key='all'>
+    <b>See all cities</b>
+  </li>
+</ul>
+
+31. Refactor:
+
+In your “CitySearch.test.js” file, refactor the code so that CitySearchWrapper 
+is defined once in beforeAll():
+
+describe('<CitySearch /> component', () => {
+  let CitySearchWrapper;
+  beforeAll(() => {
+    CitySearchWrapper = shallow(<CitySearch />);
+  });
+
+  // tests
+});
+Make sure to remove any const CitySearchWrapper = shallow(<CitySearch />); 
+afterwards in the following tests.
+
+32) need to  filter the suggestions list based on what’s been typed in 
+the search field (which will eventually be the value of query’s state 
+in the CitySearch component). In order to do so, the CitySearch component 
+will need the superset of all locations so that it can use it to filter 
+locations against query to set the suggestions state.
+
+ let's apply this concept of having locations passed as a prop to the 
+ CitySearch component in “CitySearch.test.js”:
+
+describe('<CitySearch /> component', () => {
+  let locations, CitySearchWrapper;
+  beforeAll(() => {
+    locations = extractLocations(mockData);
+    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+  });
+
+  // tests
+});
+
+33) “CitySearch.test.js” file:
+
+test('suggestion list match the query when changed', () => {
+  CitySearchWrapper.setState({ query: '', suggestions: [] });
+  CitySearchWrapper.find(".city").simulate("change", {
+    target: { value: "Berlin" },
+  });
+  const query = CitySearchWrapper.state("query");
+  const filteredLocations = locations.filter((location) => {
+    return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
+  });
+  expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
+});
+
+34) test fails. To fix this, head over to the handleInputChanged() 
+method in your “CitySearch.js” file. Currently, you’ve only changed 
+the state of query upon changing the value of the input field. Now, 
+you can to filter the state of suggestions and use the result as 
+the state’s new value:
+
+handleInputChanged = (event) => {
+  const value = event.target.value;
+  const suggestions = this.props.locations.filter((location) => {
+    return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
+  });
+  this.setState({
+    query: value,
+    suggestions,
+  });
+};
+
+Take note that you’re using this.props.locations within the function 
+because you’ll be passing it from the App component later on. 
+
+
+SCENARIO 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
+
+"Given user was typing “Berlin” in the city textbox
+And the list of suggested cities is showing
+When the user selects a city (e.g., “Berlin, Germany”) from the list
+Then their city should be changed to that city (i.e., “Berlin, Germany”)
+And the user should receive a list of upcoming events in that city."
+
+1) The first test you’ll need to write for this scenario is one 
+that checks whether the value of query’s state changes when 
+the user clicks on a suggestion. This can be done in your 
+“CitySearch.test.js” file:
+
+test("selecting a suggestion should change query state", () => {
+  CitySearchWrapper.setState({
+    query: 'Berlin'  });
+  const suggestions = CitySearchWrapper.state('suggestions');
+  CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
+  expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
+});
+
+2) test fails.  after clicking on the first item in the suggestions 
+list, the state of query didn’t change from “Berlin” to what is in 
+the first index of the suggestions array state, which is “Berlin, 
+Germany.” Let’s fix that!
+
+//src/CitySearch.js
+
+add a new function to use in the click event handler of the 
+suggestion list item. Under where the handleInputChanged 
+function is defined, add the following:
+
+handleItemClicked = (suggestion) => {
+  this.setState({
+    query: suggestion
+  });
+}
+
+3) Now, inside the render() method, add the click event 
+listener with the handleItemClicked() method called in its 
+event handler (onClick={() => this.handleItemClicked(suggestion)}) 
+to each list item in your list of suggestions. Keep in mind that 
+the suggestion being passed to handleItemClicked() is the 
+variable that’s being passed to the map loop function’s callback.
+This is a different way to write a handler for the onClick event—the 
+handler is the arrow function itself, not handleItemClicked:
+
+<ul className="suggestions">
+  {this.state.suggestions.map((suggestion) => (
+    <li
+      key={suggestion}
+      onClick={() => this.handleItemClicked(suggestion)}
+    >{suggestion}</li>
+  ))}
+  <li>
+    <b>See all cities</b>
+  </li>
+</ul>
+
+
+4) Updating “EventList.test.js” to Use Mock Data
+Early in this Exercise, you wrote this test in your 
+“EventList.test.js” file:
+
+test('render correct number of events', () => {
+  const EventListWrapper = shallow(<EventList 
+  events={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]} />);
+  expect(EventListWrapper.find(Event)).toHaveLength(4);
+});
+
+
+5) now you have mock event data (mockData from “mock-data.js”). 
+use it instead:
+
+test('render correct number of events', () => {
+  const EventListWrapper = shallow(<EventList events={mockData} />);
+  expect(EventListWrapper.find(Event)).toHaveLength(mockData.length);
+});
+
+6) Don’t forget to also import mockData into your “EventList.test.js” file!
+
+
+
+
+
+
+
+
+2. It must be able to show/hide an event's details.
+
+Scenario 1: An event element is collapsed by default.
+
+Given a user is on the main page
+When they have not clicked on an event
+Then the event element should be collapsed by default
+
+Scenario 2: User can expand an event to see its details
+
+Given a user is interested in more details
+When they click on an event
+Then they can expand it to get more information about the event that interests them
+
+Scenario 3: User can collapse an event to hide its details
+
+Given a user has already seen the relevant details
+When they click on an event
+Then they can collapse it in order to get less details displayed to them
+
+3. It must specify the number of events.
+
+Scenario 1: When user hasn’t specified a number, 32 is the default number.
+
+Given a user has not specified a preferred num 
+When they view the main page
+Then 32 is the number that is displayed to them
+
+Scenario 2: User can change the number of events they want to see. 
+
+Given a user would like to change the number of events
+When they click the dropdown
+Then they can specify the number of events they would like to see
