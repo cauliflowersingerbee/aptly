@@ -5,25 +5,25 @@ import { mockData } from '../mock-data';
 import { extractLocations } from '../api';
 
 describe('<CitySearch /> component', () => {
+  let CitySearchWrapper;
+  beforeAll(() => {
+    CitySearchWrapper = shallow(<CitySearch />);
+  });
+
   test('render text input', () => {
-    const CitySearchWrapper = shallow(<CitySearch />);
     expect(CitySearchWrapper.find('.city')).toHaveLength(1);
   });
-});
 
 test('renders a list of suggestions', () => {
-    const CitySearchWrapper = shallow(<CitySearch />);
     expect(CitySearchWrapper.find('.suggestions')).toHaveLength(1);
   });
 
 test('renders text input correctly', () => {
-    const CitySearchWrapper = shallow(<CitySearch />);
     const query = CitySearchWrapper.state('query');
     expect(CitySearchWrapper.find('.city').prop('value')).toBe(query);
   });
 
   test('change state when text input changes', () => {
-    const CitySearchWrapper = shallow(<CitySearch />);
     CitySearchWrapper.setState({
       query: 'Munich'
     });
@@ -34,7 +34,6 @@ test('renders text input correctly', () => {
 
   test('render list of suggestions correctly', () => {
     const locations = extractLocations(mockData);
-    const CitySearchWrapper = shallow(<CitySearch />);
     CitySearchWrapper.setState({ suggestions: locations });
     const suggestions = CitySearchWrapper.state('suggestions');
     expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
@@ -42,4 +41,4 @@ test('renders text input correctly', () => {
       expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]);
     }
   });
-
+});
