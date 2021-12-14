@@ -8,7 +8,7 @@ class NumberOfEvents extends Component {
         type="number"
         className="number-events-input"
         value={this.props.numberOfEvents}
-        onChange={this.props.updateEventCount}
+        onChange={this.props.updateNumberOfEvents}
         />
       </div>
     );
