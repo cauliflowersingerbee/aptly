@@ -18,7 +18,7 @@ describe('<Event /> component', () => {
       });
     
     //2.We need to show event details in dropdown button ie 
-    //  summary, location, date & timezone
+      //summary, location, date & timezone
       test("summary is displayed", () => {
         expect(EventWrapper.find(".summary")).toHaveLength(1);
       });

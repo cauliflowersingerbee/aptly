@@ -15,6 +15,6 @@ describe('<NumberOfEvents /> component', () => {
     const NumberOfEvents = NumberOfEventsWrapper.prop("numberOfEvents");
     expect(NumberOfEventsWrapper.find(".number-events-input").prop("value")).toBe(
       NumberOfEvents
-    );
+   );
   });
 });
