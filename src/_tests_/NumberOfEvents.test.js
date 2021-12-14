@@ -3,17 +3,18 @@ import { shallow } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
 
 describe('<NumberOfEvents /> component', () => {
-  let NumberOfEventsWrapper, numberOfEvents ;
+  let NumberOfEventsWrapper;
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={() => {}}/>)
+    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
   });
+
   test('render text input', () => {
     expect(NumberOfEventsWrapper.find('.NumberOfEvents')).toHaveLength(1);
   });
   test("render text input correctly from prop", () => {
-    const numberOfEvents = NumberOfEventsWrapper.prop("numberOfEvents");
+    const NumberOfEvents = NumberOfEventsWrapper.prop("numberOfEvents");
     expect(NumberOfEventsWrapper.find(".number-events-input").prop("value")).toBe(
-      numberOfEvents
+      NumberOfEvents
     );
   });
-})
+});
