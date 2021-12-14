@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class NumberOfEvents extends Component {
+class EventNumber extends Component {
   render() {
     return (
       <div className="NumberOfEvents">
@@ -16,4 +16,4 @@ class NumberOfEvents extends Component {
   }
 }
 
-export default NumberOfEvents;
+export default EventNumber;
