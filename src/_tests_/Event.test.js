@@ -23,6 +23,10 @@ describe('<Event /> component', () => {
     test("summary is displayed", () => {
         expect(EventWrapper.find(".summary")).toHaveLength(1);
       });
+     // test("location is displayed", () => {
+       // expect(EventWrapper.find(".location")).toHaveLength(1);
+      //});
+    
 
     });
 
