@@ -19,8 +19,4 @@ describe('<NumberOfEvents /> component', () => {
    );
   });
 
-  test('renders a list of number suggestions', () => {
-    expect(NumberOfEventsWrapper.find('.suggestions')).toHaveLength(1);
-  });
-
 });

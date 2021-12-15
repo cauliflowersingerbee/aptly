@@ -71,10 +71,14 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
+  test('Specify number of events to be 20', async () => {
+   const AppWrapper = mount(<App />);
+   const NumberOfEventsState = AppWrapper.state('numberOfEvents');
+   expect(NumberOfEventsState).not.toEqual(undefined);
+   expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(20);
+   AppWrapper.unmount();
 
-
-
-
+  });
 
   
 });

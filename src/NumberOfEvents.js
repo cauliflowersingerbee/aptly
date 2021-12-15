@@ -14,18 +14,6 @@ class NumberOfEvents extends Component {
         value={this.props.numberOfEvents}
         onChange={this.props.updateNumberOfEvents}
         />
-        <ul className="suggestions">
-           {this.state.suggestions.map((suggestion) => (
-             <li
-                key={suggestion}
-                onClick={() => this.handleItemClicked(suggestion)}
-                >{suggestion}
-             </li>
-                ))}
-             <li>
-              <b>Choose a number</b>
-            </li>
-        </ul>
       </div>
     );
   }
