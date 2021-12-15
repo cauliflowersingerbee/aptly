@@ -11,7 +11,8 @@ import { getEvents, extractLocations } from './api';
 class App extends Component {
   state = {
     events: [], 
-    locations: []
+    locations: [], 
+    numberOfEvents: 20
   }
 
   componentDidMount() {
@@ -38,12 +39,44 @@ class App extends Component {
     });
   }
 
+  updateNumberOfEvents = async (e) => {
+    const newVal = e.target.value ? parseInt(e.target.value) : 20;
+
+    if (newVal < 1 || newVal > 20) {
+      await this.setState({
+        errorText: "Please choose a number between 1 and 20",
+      });
+    } else {
+      await this.setState({
+        errorText: "",
+        numberOfEvents: newVal,
+      });
+      this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
+    }
+  };
+
+  getData = () => {
+    if (this.mounted) {
+      const { locations, events } = this.state;
+
+      const data = locations.map((location) => {
+        const number = events.filter(
+          (event) => event.location === location
+        ).length;
+        const city = location.split(", ").shift();
+        return { city, number };
+      });
+      return data;
+    }
+  };
+
   render() {
     return (
       <div className="App">
          <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
          <EventList events={this.state.events} />
-         <NumberOfEvents />
+         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} 
+            updateNumberOfEvents={this.updateNumberOfEvents}/>
       </div>
     );
   }
