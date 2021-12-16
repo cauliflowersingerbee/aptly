@@ -9,7 +9,10 @@ defineFeature(feature, test => {
       });
   
       when('the user opens the app', () => {
-  
+        let AppWrapper;
+        when('the user opens the app', () => {
+          AppWrapper = mount(<App />);
+        });
       });
   
       then('the user should see the list of upcoming events.', () => {
