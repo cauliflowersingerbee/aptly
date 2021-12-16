@@ -28,27 +28,28 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location, eventCount) => {
+  updateEvents = async (location, numberOfEvents) => {
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events :
-        events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
-      });
+      const locationEvents =
+        location === "all"
+          ? events
+          : events.filter((event) => event.location === location);
+
+      const eventsToShow = locationEvents.slice(0, numberOfEvents);
+      if (this.mounted) {
+        this.setState({
+          events: eventsToShow,
+          currentLocation: location,
+        });
+      }
     });
-  }
+  };
 
   updateNumberOfEvents = async (e) => {
     const newVal = e.target.value ? parseInt(e.target.value) : 20;
 
     if (newVal < 1 || newVal > 20) {
       await this.setState({
-        errorText: "Please choose a number between 1 and 20",
-      });
-    } else {
-      await this.setState({
-        errorText: "",
         numberOfEvents: newVal,
       });
       this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
