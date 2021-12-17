@@ -3,6 +3,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 import App from '../App';
 import { mockData } from '../mock-data';
+import { mount, shallow } from 'enzyme';
+import CitySearch from '../CitySearch';
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
