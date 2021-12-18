@@ -45,12 +45,15 @@ defineFeature(feature, test => {
     });
 
     test('User can select a city from the suggested list', ({ given, and, when, then }) => {
-        given('user was typing “Berlin” in the city textbox', () => {
-
+        let AppWrapper;
+        given('user was typing “Berlin” in the city textbox', async () => {  
+            AppWrapper = await mount(<App />);
+            AppWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });
         });
 
         and('the list of suggested cities is showing', () => {
-
+            AppWrapper.update();
+            expect(AppWrapper.find('.suggestions li')).toHaveLength(2);
         });
 
         when('the user selects a city (e.g., “Berlin, Germany”) from the list', () => {
