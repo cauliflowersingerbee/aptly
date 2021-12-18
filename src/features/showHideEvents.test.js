@@ -1,11 +1,8 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import App from '../App';
 import { mockData } from '../mock-data';
-import CitySearch from '../CitySearch';
-import { extractLocations } from '../api';
-
 
 const feature = loadFeature('./src/features/showHideEvents.feature');
 
@@ -54,11 +51,12 @@ defineFeature(feature, test => {
         let AppWrapper;
 
         given('a user has already seen the relevant details', () => {
-            
+            let Event = AppWrapper.find('.event');
+            expect(Event.find('.show')).toBeDefined();
         });
 
         when('they click on an event', () => {
-
+           
         });
 
         then('they can collapse it in order to get less details displayed to them', () => {
