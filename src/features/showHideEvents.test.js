@@ -24,10 +24,12 @@ defineFeature(feature, test => {
             expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
         });
 
-        then('the event element should be collapsed by default', () => {
-        
+        then('the event element should be collapsed by default', async () => {
+            const eventDetails = await AppWrapper.find('.event .more-info');
+            expect(eventDetails.find('.hide')).toBeDefined();
         });
     });
+   
 
     test('User can expand an event to see its details', ({ given, when, then }) => {
         given('a user is interested in more details', () => {
