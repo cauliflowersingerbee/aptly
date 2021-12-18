@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import App from '../App';
 import { mockData } from '../mock-data';
 import CitySearch from '../CitySearch';
-import { extractLocations } from './api';
+import { extractLocations } from '../api';
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
@@ -35,11 +35,11 @@ defineFeature(feature, test => {
         });
 
         when('the user starts typing in the city textbox', () => {
-
+            CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });
         });
 
         then('the user should receive a list of cities (suggestions) that match what they’ve typed', () => {
-
+            expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(2);
         });
     });
 
