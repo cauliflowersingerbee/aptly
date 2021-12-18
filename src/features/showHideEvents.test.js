@@ -1,20 +1,31 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
+import React from 'react';
+import { mount, shallow } from 'enzyme';
+import App from '../App';
+import { mockData } from '../mock-data';
+import CitySearch from '../CitySearch';
+import { extractLocations } from '../api';
+
 
 const feature = loadFeature('./src/features/showHideEvents.feature');
 
 defineFeature(feature, test => {
+   
 
     test('An event element is collapsed by default.', ({ given, when, then }) => {
-        given('a user is on the main page', () => {
+        let AppWrapper;
 
+        given('a user is on the main page', () => {
+            AppWrapper = mount(<App />);
         });
 
         when('they have not clicked on an event', () => {
-
+            AppWrapper.update();
+            expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
         });
 
         then('the event element should be collapsed by default', () => {
-
+        
         });
     });
 
