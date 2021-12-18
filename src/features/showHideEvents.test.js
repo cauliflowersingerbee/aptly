@@ -25,29 +25,36 @@ defineFeature(feature, test => {
         });
 
         then('the event element should be collapsed by default', async () => {
-            const eventDetails = await AppWrapper.find('.event .more-info');
-            expect(eventDetails.find('.hide')).toBeDefined();
+            const showDetails = await AppWrapper.find('.event .more-info');
+            expect(showDetails.find('.hide')).toBeDefined();
         });
     });
    
 
     test('User can expand an event to see its details', ({ given, when, then }) => {
-        given('a user is interested in more details', () => {
+        let AppWrapper;
 
+        given('a user is interested in more details', () => {
+            AppWrapper = mount(<App />);
         });
 
         when('they click on an event', () => {
-
+            AppWrapper.update();
+            let Event = AppWrapper.find('.event');
+            Event.find('.show-more').at(0).simulate('click');
         });
 
         then('they can expand it to get more information about the event that interests them', () => {
-
+            let Event = AppWrapper.find('.more-info');
+            expect(Event.find('.show')).toBeDefined();
         });
     });
 
     test('User can collapse an event to hide its details', ({ given, when, then }) => {
-        given('a user has already seen the relevant details', () => {
+        let AppWrapper;
 
+        given('a user has already seen the relevant details', () => {
+            
         });
 
         when('they click on an event', () => {
