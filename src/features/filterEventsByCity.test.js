@@ -1,9 +1,8 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import App from '../App';
 import { mockData } from '../mock-data';
-import { mount, shallow } from 'enzyme';
 import CitySearch from '../CitySearch';
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
