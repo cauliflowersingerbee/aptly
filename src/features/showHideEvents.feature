@@ -11,6 +11,6 @@ When they click on an event
 Then they can expand it to get more information about the event that interests them
 
 Scenario: User can collapse an event to hide its details
-Given a user has already seen the relevant details
+Given a user has already expanded to get more information about the event that interests them
 When they click on an event
 Then they can collapse it in order to get less details displayed to them

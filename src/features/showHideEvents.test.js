@@ -50,8 +50,8 @@ defineFeature(feature, test => {
     test('User can collapse an event to hide its details', ({ given, when, then }) => {
         let AppWrapper;
 
-        given('a user has already seen the relevant details', () => {
-            let Event = AppWrapper.find('.event');
+        given('a user has already expanded to get more information about the event that interests them', () => {
+            let Event = AppWrapper.find('.more-info');
             expect(Event.find('.show')).toBeDefined();
         });
 
