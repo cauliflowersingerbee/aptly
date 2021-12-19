@@ -1,11 +1,15 @@
-import { loadFeature, defineFeature } from 'jest-cucumber';
+import { loadFeature, defineFeature } from "jest-cucumber";
+import React from 'react';
+import { mount } from 'enzyme';
+import App from '../App';
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
 defineFeature(feature, test => {
     test('When user hasn’t specified a number, 20 is the default number.', ({ given, when, then }) => {
+        let AppWrapper;
         given('a user has not specified a preferred number', () => {
-
+            AppWrapper = mount(<App />);
         });
 
         when('they view the main page', () => {
@@ -13,7 +17,7 @@ defineFeature(feature, test => {
         });
 
         then(/^(\d+) is the number that is displayed to them$/, (arg0) => {
-
+            expect(AppWrapper.state('numberOfEvents')).toBeDefined();
         });
     });
     
