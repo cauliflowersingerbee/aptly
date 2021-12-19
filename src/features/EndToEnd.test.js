@@ -1,4 +1,4 @@
-import jest from 'jest';
+
 import puppeteer from 'puppeteer';
 
 
@@ -33,3 +33,5 @@ describe('show/hide an event details', () => {
         expect(eventDetails).toBeNull();
       });
 });
+
+//test for first feature: Filter events by city
