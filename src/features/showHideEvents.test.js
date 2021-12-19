@@ -1,6 +1,7 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import Event from '../Event';
 import App from '../App';
 import { mockData } from '../mock-data';
 
@@ -42,8 +43,8 @@ defineFeature(feature, test => {
         });
 
         then('they can expand it to get more information about the event that interests them', () => {
-            let Event = AppWrapper.find('.more-info');
-            expect(Event.find('.show')).toBeDefined();
+            let eventDetails = AppWrapper.find('.more-info');
+            expect(eventDetails.find('.show')).toBeDefined();
         });
     });
 
@@ -51,8 +52,7 @@ defineFeature(feature, test => {
         let AppWrapper;
 
         given('a user has already expanded to get more information about the event that interests them', () => {
-            let Event = AppWrapper.find('.more-info');
-            expect(Event.find('.show')).toBeDefined();
+         //  Event.find('.show-more').at(0).simulate('click');
         });
 
         when('they click on an event', () => {
