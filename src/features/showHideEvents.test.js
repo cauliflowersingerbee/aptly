@@ -18,8 +18,7 @@ defineFeature(feature, test => {
         });
 
         when('they have not clicked on an event', () => {
-            AppWrapper.update();
-            expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+            
         });
 
         then('the event element should be collapsed by default', async () => {
@@ -39,7 +38,7 @@ defineFeature(feature, test => {
         when('they click on an event', () => {
             AppWrapper.update();
             let Event = AppWrapper.find('.event');
-            Event.find('.show-more').at(0).simulate('click');
+            Event.find('.show-more').at(1).simulate('click');
         });
 
         then('they can expand it to get more information about the event that interests them', () => {
@@ -52,15 +51,21 @@ defineFeature(feature, test => {
         let AppWrapper;
 
         given('a user has already expanded to get more information about the event that interests them', () => {
-         //  Event.find('.show-more').at(0).simulate('click');
+            AppWrapper = mount(<App />); 
+            let eventDetails = AppWrapper.find('.more-info');
+            expect(eventDetails.find('.show')).toBeDefined();
         });
 
         when('they click on an event', () => {
-           
+            AppWrapper.update();
+            let Event = AppWrapper.find('.event');
+            Event.find('.show-more').at(1).simulate('click');
         });
 
         then('they can collapse it in order to get less details displayed to them', () => {
-
+            let eventDetails = AppWrapper.find('.more-info');
+            expect(eventDetails.find('.hidden')).toBeDefined();
         });
     });
 });
+
