@@ -22,16 +22,18 @@ defineFeature(feature, test => {
     });
     
     test('User can change the number of events they want to see.', ({ given, when, then }) => {
+        let AppWrapper;
         given('a user would like to change the number of events', () => {
-
+            AppWrapper = mount(<App />);
         });
 
         when('they click the dropdown', () => {
-
+            AppWrapper.find('.number-events-input').simulate('change', { target: { value: '15' } });
         });
 
         then('they can specify the number of events they would like to see"', () => {
-        
+            AppWrapper.update();
+            expect(AppWrapper.state('numberOfEvents')).toBeDefined();
         });
     });
 
