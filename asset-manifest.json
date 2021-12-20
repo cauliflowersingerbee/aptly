@@ -1,27 +1,16 @@
 {
   "files": {
-    "main.css": "/aptly/static/css/main.174bcaea.chunk.css",
-    "main.js": "/aptly/static/js/main.4cb7f0b0.chunk.js",
-    "main.js.map": "/aptly/static/js/main.4cb7f0b0.chunk.js.map",
-    "runtime-main.js": "/aptly/static/js/runtime-main.0848d5c4.js",
-    "runtime-main.js.map": "/aptly/static/js/runtime-main.0848d5c4.js.map",
-    "static/css/2.0a9ec390.chunk.css": "/aptly/static/css/2.0a9ec390.chunk.css",
-    "static/js/2.d0012b84.chunk.js": "/aptly/static/js/2.d0012b84.chunk.js",
-    "static/js/2.d0012b84.chunk.js.map": "/aptly/static/js/2.d0012b84.chunk.js.map",
-    "static/js/3.db594f82.chunk.js": "/aptly/static/js/3.db594f82.chunk.js",
-    "static/js/3.db594f82.chunk.js.map": "/aptly/static/js/3.db594f82.chunk.js.map",
-    "index.html": "/aptly/index.html",
+    "main.css": "/aptly/static/css/main.3f9717a7.css",
+    "main.js": "/aptly/static/js/main.d98057c4.js",
+    "static/js/377.2a6cb0ba.chunk.js": "/aptly/static/js/377.2a6cb0ba.chunk.js",
     "service-worker.js": "/aptly/service-worker.js",
-    "service-worker.js.map": "/aptly/service-worker.js.map",
-    "static/css/2.0a9ec390.chunk.css.map": "/aptly/static/css/2.0a9ec390.chunk.css.map",
-    "static/css/main.174bcaea.chunk.css.map": "/aptly/static/css/main.174bcaea.chunk.css.map",
-    "static/js/2.d0012b84.chunk.js.LICENSE.txt": "/aptly/static/js/2.d0012b84.chunk.js.LICENSE.txt"
+    "index.html": "/aptly/index.html",
+    "main.3f9717a7.css.map": "/aptly/static/css/main.3f9717a7.css.map",
+    "main.d98057c4.js.map": "/aptly/static/js/main.d98057c4.js.map",
+    "377.2a6cb0ba.chunk.js.map": "/aptly/static/js/377.2a6cb0ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.0848d5c4.js",
-    "static/css/2.0a9ec390.chunk.css",
-    "static/js/2.d0012b84.chunk.js",
-    "static/css/main.174bcaea.chunk.css",
-    "static/js/main.4cb7f0b0.chunk.js"
+    "static/css/main.3f9717a7.css",
+    "static/js/main.d98057c4.js"
   ]
 }
