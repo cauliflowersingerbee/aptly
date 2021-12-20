@@ -22,7 +22,6 @@ class App extends Component {
 }
 
   async componentDidMount() {
-    const { numberOfEvents } = this.state;
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
