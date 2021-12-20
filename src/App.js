@@ -18,7 +18,8 @@ class App extends Component {
     locations: [], 
     numberOfEvents: 20, 
     errorText: ''
-  }
+  };
+}
 
   async componentDidMount() {
     const { numberOfEvents } = this.state;
