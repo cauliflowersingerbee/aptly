@@ -5,11 +5,14 @@ import CitySearch from './CitySearch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
-import {ErrorAlert} from './Alert';
+
 
 
 
 class App extends Component {
+  constructor(props) {
+		super(props);
+
   state = {
     events: [], 
     locations: [], 
@@ -42,7 +45,6 @@ class App extends Component {
         this.setState({
           events: eventsToShow,
           currentLocation: location,
-          errorText: ''
         });
       }
     });
@@ -53,9 +55,13 @@ class App extends Component {
 
     if (newVal < 1 || newVal > 20) {
       await this.setState({
-        numberOfEvents: newVal,
         errorText: 'Please enter a value between 1 and 20'
       });
+    } else {
+			this.setState({
+				errorText: '',
+				numberOfEvents: newVal,
+			});
       this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
     }
   };
