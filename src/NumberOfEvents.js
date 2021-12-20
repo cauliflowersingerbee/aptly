@@ -11,9 +11,12 @@ class NumberOfEvents extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="NumberOfEvents">
      <Row>
-      <div className="NumberOfEvents">
+      <div>
+      <p>Number of events to show:</p>
+      </div>
+      <div>
         <input
         type="number"
         className="number-events-input"

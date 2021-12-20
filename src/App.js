@@ -56,8 +56,9 @@ class App extends Component {
     const newVal = e.target.value ? parseInt(e.target.value) : 20;
 
     if (newVal < 1 || newVal > 20) {
-      await this.setState({
-        errorText: 'Please enter a value between 1 and 20'
+      return this.setState({
+        errorText: 'Please enter a value between 1 and 20', 
+        numberOfEvents: ''
       });
     } else {
 			this.setState({
@@ -89,7 +90,7 @@ class App extends Component {
          <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
          <EventList events={this.state.events} />
          <NumberOfEvents numberOfEvents={this.state.numberOfEvents} 
-            updateNumberOfEvents={this.updateNumberOfEvents}/>
+            updateNumberOfEvents={this.updateNumberOfEvents} errorText={this.state.errorText} />
       </div>
     );
   }
