@@ -22,11 +22,11 @@ class App extends Component {
 }
 
   async componentDidMount() {
-    const { numberOfEvents } = this.state;
+    //const { numberOfEvents } = this.state;
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({ events, numberOfEvents, locations: extractLocations(events) });
       }
     });
   }
@@ -53,15 +53,15 @@ class App extends Component {
   };
 
   updateNumberOfEvents = async (e) => {
-    const newVal = e.target.value ? parseInt(e.target.value) : 20;
+    const newVal = e.target.value;
 
     if (newVal < 1 || newVal > 20) {
-      return this.setState({
+        return this.setState({
         errorText: 'Please enter a value between 1 and 20', 
-        numberOfEvents: ''
+        numberOfEvents: '0'
       });
     } else {
-			this.setState({
+			return this.setState({
 				errorText: '',
 				numberOfEvents: newVal,
 			});
