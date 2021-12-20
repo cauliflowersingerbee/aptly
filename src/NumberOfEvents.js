@@ -11,15 +11,19 @@ class NumberOfEvents extends Component {
 
   render() {
     return (
+     <Row>
       <div className="NumberOfEvents">
         <input
         type="number"
         className="number-events-input"
         value={this.props.numberOfEvents}
         onChange={this.props.updateNumberOfEvents}
-        ErrorAlert text={this.props.errorText}
         />
       </div>
+      <div>
+        <ErrorAlert text={this.props.errorText} />
+      </div>
+      </Row>
     );
   }
 }
