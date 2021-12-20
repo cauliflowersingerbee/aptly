@@ -11,6 +11,7 @@ class NumberOfEvents extends Component {
 
   render() {
     return (
+      <Container>
      <Row>
       <div className="NumberOfEvents">
         <input
@@ -24,6 +25,7 @@ class NumberOfEvents extends Component {
         <ErrorAlert text={this.props.errorText} />
       </div>
       </Row>
+      </Container>
     );
   }
 }
