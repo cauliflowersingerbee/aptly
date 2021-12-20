@@ -17,6 +17,7 @@ class NumberOfEvents extends Component {
         className="number-events-input"
         value={this.props.numberOfEvents}
         onChange={this.props.updateNumberOfEvents}
+        ErrorAlert text={this.props.errorText}
         />
       </div>
     );
