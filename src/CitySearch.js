@@ -6,7 +6,7 @@ class CitySearch extends Component {
     query: '',
     suggestions: [], 
     showSuggestions: undefined, 
-    infoText: ''
+    errorText: ''
   }
   handleInputChanged = (event) => {
     const value = event.target.value;
@@ -17,14 +17,14 @@ class CitySearch extends Component {
     if (suggestions.length === 0) {
       this.setState({
         query: value,
-        infoText: 'We cannot find the city you are looking for. Please try another city',
+        errorText: 'We cannot find the city you are looking for. Please try another city',
       });
     } else {
       return this.setState({
         query: value,
         suggestions: [],
         showSuggestions: false,
-        infoText: ''
+        errorText: ''
     });
   };
 };
