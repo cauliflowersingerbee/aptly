@@ -13,7 +13,7 @@ class App extends Component {
   constructor(props) {
 		super(props);
 
-  state = {
+  this.state = {
     events: [], 
     locations: [], 
     numberOfEvents: 20, 
@@ -22,6 +22,7 @@ class App extends Component {
 }
 
   async componentDidMount() {
+    const { numberOfEvents } = this.state;
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
