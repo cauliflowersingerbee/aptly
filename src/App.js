@@ -16,7 +16,7 @@ class App extends Component {
   this.state = {
     events: [], 
     locations: [], 
-    numberOfEvents: 20, 
+    numberOfEvents: '', 
     errorText: ''
   };
 }
