@@ -14,7 +14,7 @@ class App extends Component {
     events: [], 
     locations: [], 
     numberOfEvents: 20, 
-    infoText: ''
+    errorText: ''
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class App extends Component {
         this.setState({
           events: eventsToShow,
           currentLocation: location,
-          infoText: ''
+          errorText: ''
         });
       }
     });
@@ -54,7 +54,7 @@ class App extends Component {
     if (newVal < 1 || newVal > 20) {
       await this.setState({
         numberOfEvents: newVal,
-        infoText: 'Please enter a value between 1 and 20'
+        errorText: 'Please enter a value between 1 and 20'
       });
       this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
     }
@@ -78,7 +78,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         <ErrorAlert text={this.state.infoText} />
+         <ErrorAlert text={this.state.errorText} />
          <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
          <EventList events={this.state.events} />
          <NumberOfEvents numberOfEvents={this.state.numberOfEvents} 
