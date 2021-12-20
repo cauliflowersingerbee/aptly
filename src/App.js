@@ -20,7 +20,8 @@ class App extends Component {
     errorText: ''
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const { numberOfEvents } = this.state;
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
