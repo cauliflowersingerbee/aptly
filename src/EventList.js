@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Event from './Event';
 import { WarnAlert} from './Alert';
+import { Row } from 'react-bootstrap';
 
 class EventList extends Component {
     render() {
