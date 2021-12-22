@@ -80,11 +80,9 @@ class App extends Component {
         numberOfEvents: '0'
       });
     } else {
-			return this.setState({
-				errorText: '',
-				numberOfEvents: newVal,
-			});
       this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
+      return this.setState({errorText: '', numberOfEvents: newVal,
+    }); 
     }
   };
 
@@ -104,6 +102,7 @@ class App extends Component {
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div
 className="App" />
+
     return (
       <div className="App">
         <h4>Choose your nearest city</h4>
@@ -112,7 +111,7 @@ className="App" />
             updateNumberOfEvents={this.updateNumberOfEvents} errorText={this.state.errorText} />
          
          <h4>Events in each city:</h4>
-
+         <ResponsiveContainer height={400}>
          <ScatterChart width={730} height={250}
               margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -121,6 +120,7 @@ className="App" />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
               <Scatter data={this.getData()} fill="#8884d8" />
          </ScatterChart>
+         </ResponsiveContainer>
 
          <EventList events={this.state.events} />
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
