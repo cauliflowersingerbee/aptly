@@ -1,6 +1,7 @@
 import React from 'react';
-import './styles/WelcomeScreen.css';
+import './WelcomeScreen.css';
 import { Row, Col, Container } from 'react-bootstrap';
+
 
 
 function WelcomeScreen(props) {
