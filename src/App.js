@@ -111,6 +111,7 @@ className="App" />
             updateNumberOfEvents={this.updateNumberOfEvents} errorText={this.state.errorText} />
          
          <h4>Events in each city:</h4>
+         
          <ResponsiveContainer height={400}>
          <ScatterChart width={730} height={250}
               margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
