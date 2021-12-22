@@ -95,6 +95,8 @@ className="App" />
          <EventList events={this.state.events} />
          <NumberOfEvents numberOfEvents={this.state.numberOfEvents} 
             updateNumberOfEvents={this.updateNumberOfEvents} errorText={this.state.errorText} />
+          <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
+getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
