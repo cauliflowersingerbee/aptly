@@ -6,16 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import WelcomeScreen from './WelcomeScreen';
-import {
-	ScatterChart,
-	Scatter,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	ResponsiveContainer,
+import {ScatterChart, Scatter, XAxis,	YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
-
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -26,6 +19,7 @@ class App extends Component {
     events: [], 
     locations: [], 
     numberOfEvents: 20, 
+    currentLocation: 'all',
     errorText: '', 
     showWelcomeScreen: undefined
   };
@@ -104,14 +98,17 @@ class App extends Component {
 className="App" />
 
     return (
-      <div className="App">
+      
+      <Container className="App">
+        <Row>
         <h4>Choose your nearest city</h4>
          <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
          <NumberOfEvents numberOfEvents={this.state.numberOfEvents} 
             updateNumberOfEvents={this.updateNumberOfEvents} errorText={this.state.errorText} />
-         
+        </Row>
+        <Row>
          <h4>Events in each city:</h4>
-         
+
          <ResponsiveContainer height={400}>
          <ScatterChart width={730} height={250}
               margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
@@ -122,11 +119,15 @@ className="App" />
               <Scatter data={this.getData()} fill="#8884d8" />
          </ScatterChart>
          </ResponsiveContainer>
-
+         </Row>
+         <Row>
          <EventList events={this.state.events} />
+         </Row>
+         <Row>
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
 getAccessToken={() => { getAccessToken() }} />
-      </div>
+        </Row>
+      </Container>
     );
   }
 }
