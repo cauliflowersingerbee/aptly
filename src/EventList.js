@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import Event from './Event';
+import { WarnAlert} from './Alert';
 
 class EventList extends Component {
     render() {
         const { events } = this.props;
         return (
+          <Row>
+          <ul className="EventList">
+          {!navigator.onLine ? (
+						<WarnAlert text="This list is not current and has been loaded from the Cache. To update it, please turn on mobile data or wifi." />
+					) : (
+						''
+					)}
+          </ul>
           <ul className="EventList">
               {events.map(event =>
         <li key={event.id}>
@@ -12,6 +21,7 @@ class EventList extends Component {
         </li>
       )}
           </ul>
+          </Row>
         );
       }
 }
