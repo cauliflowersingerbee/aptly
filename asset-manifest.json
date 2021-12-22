@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/aptly/static/css/main.58231a33.css",
-    "main.js": "/aptly/static/js/main.bd878272.js",
-    "static/js/377.2a6cb0ba.chunk.js": "/aptly/static/js/377.2a6cb0ba.chunk.js",
+    "main.js": "/aptly/static/js/main.f64ebe50.js",
+    "static/js/377.02dca024.chunk.js": "/aptly/static/js/377.02dca024.chunk.js",
     "service-worker.js": "/aptly/service-worker.js",
     "index.html": "/aptly/index.html",
     "main.58231a33.css.map": "/aptly/static/css/main.58231a33.css.map",
-    "main.bd878272.js.map": "/aptly/static/js/main.bd878272.js.map",
-    "377.2a6cb0ba.chunk.js.map": "/aptly/static/js/377.2a6cb0ba.chunk.js.map"
+    "main.f64ebe50.js.map": "/aptly/static/js/main.f64ebe50.js.map",
+    "377.02dca024.chunk.js.map": "/aptly/static/js/377.02dca024.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.58231a33.css",
-    "static/js/main.bd878272.js"
+    "static/js/main.f64ebe50.js"
   ]
 }
