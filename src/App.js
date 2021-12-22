@@ -26,7 +26,7 @@ class App extends Component {
 }
 
   async componentDidMount() {
-    const { numberOfEvents } = this.state;
+    //const { numberOfEvents } = this.state;
     this.mounted = true;
 
     const accessToken = localStorage.getItem('access_token');
@@ -103,13 +103,14 @@ className="App" />
         <Row>
         <h4>Choose your nearest city</h4>
          <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+         </Row>
+         <Row>
          <NumberOfEvents numberOfEvents={this.state.numberOfEvents} 
             updateNumberOfEvents={this.updateNumberOfEvents} errorText={this.state.errorText} />
         </Row>
         <Row>
          <h4>Events in each city:</h4>
 
-         <ResponsiveContainer height={400}>
          <ScatterChart width={730} height={250}
               margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -118,7 +119,7 @@ className="App" />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
               <Scatter data={this.getData()} fill="#8884d8" />
          </ScatterChart>
-         </ResponsiveContainer>
+         
          </Row>
          <Row>
          <EventList events={this.state.events} />
