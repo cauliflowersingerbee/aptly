@@ -4,7 +4,8 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NumberOfEvents from './NumberOfEvents';
-import { getEvents, extractLocations } from './api';
+import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
+import WelcomeScreen from './WelcomeScreen';
 
 
 
@@ -17,7 +18,8 @@ class App extends Component {
     events: [], 
     locations: [], 
     numberOfEvents: 20, 
-    errorText: ''
+    errorText: '', 
+    showWelcomeScreen: undefined
   };
 }
 
