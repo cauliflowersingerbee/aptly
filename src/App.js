@@ -8,7 +8,7 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import WelcomeScreen from './WelcomeScreen';
 import {ScatterChart, Scatter, XAxis,	YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
 }
 
   async componentDidMount() {
-    //const { numberOfEvents } = this.state;
+    const { numberOfEvents } = this.state;
     this.mounted = true;
 
     const accessToken = localStorage.getItem('access_token');
