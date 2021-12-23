@@ -11,7 +11,7 @@ export const extractLocations = events => {
 
 export const checkToken = async (accessToken) => {
   if (window.location.href.startsWith("http://localhost")) {
-        return {};
+        return {mockData};
       }  
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -27,7 +27,7 @@ export const getEvents = async () => {
 
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
-    return {};
+    return {mockData};
   }
 
   if (!navigator.onLine) {
