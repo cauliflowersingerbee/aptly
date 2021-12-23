@@ -24,7 +24,15 @@ class Event extends Component {
               <p className="location">
                 {event.location}
               </p>
-        
+        {!collapsed && (
+             <div className={`more-info ${collapsed ? `hidden` : `show`}`}>
+             <h3>About this event:</h3>
+             <a href={event.htmlLink} rel="noreferrer" target="_blank">
+               See details on Google Calendar
+             </a>
+             <p className="event-description">{event.description}</p>
+           </div>
+        )}
               <Button
 						variant="light"
 						size="md"
@@ -35,13 +43,7 @@ class Event extends Component {
 						{collapsed ? 'Show Details' : 'Hide Details'}
 					</Button>
               
-                <div className={`more-info ${collapsed ? `hidden` : `show`}`}>
-                  <h3>About this event:</h3>
-                  <a href={event.htmlLink} rel="noreferrer" target="_blank">
-                    See details on Google Calendar
-                  </a>
-                  <p className="event-description">{event.description}</p>
-                </div>
+               
             </div>
   }
 }
