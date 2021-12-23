@@ -9,7 +9,7 @@ import WelcomeScreen from './WelcomeScreen';
 import {ScatterChart, Scatter, XAxis,	YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 import { Container, Row } from 'react-bootstrap';
-import { EventGenre } from './EventGenre';
+import  EventGenre  from './EventGenre';
 
 
 class App extends Component {
@@ -27,7 +27,6 @@ class App extends Component {
 }
 
   async componentDidMount() {
-    //const { numberOfEvents } = this.state;
     this.mounted = true;
 
     const accessToken = localStorage.getItem('access_token');
@@ -95,18 +94,20 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div
+    const { locations, numberOfEvents, events, showWelcomeScreen } = this.state;
+    if (showWelcomeScreen === undefined) return <div
 className="App" />
+    
 
     return (
       
       <Container className="App">
         <Row>
         <h4>Choose your nearest city</h4>
-         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+         <CitySearch locations={locations} updateEvents={this.updateEvents} />
          </Row>
          <Row>
-         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} 
+         <NumberOfEvents numberOfEvents={numberOfEvents} 
             updateNumberOfEvents={this.updateNumberOfEvents} errorText={this.state.errorText} />
         </Row>
         <Row>
@@ -129,7 +130,7 @@ className="App" />
 
          </Row>
          <Row>
-         <EventList events={this.state.events} />
+         <EventList events={events} />
          </Row>
          <Row>
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
