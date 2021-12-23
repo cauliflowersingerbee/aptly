@@ -23,7 +23,7 @@ class CitySearch extends Component {
       return this.setState({
         query: value,
         suggestions,
-        showSuggestions: false,
+        //showSuggestions: false,
         infoText: ''
     });
   };
@@ -42,6 +42,7 @@ class CitySearch extends Component {
     return (
       <div className="CitySearch">
          <InfoAlert text={this.state.infoText} />
+         <p className="choose-city">Choose city near you</p>
           <input
         type="text"
         className="city"
@@ -57,7 +58,7 @@ class CitySearch extends Component {
             {suggestion}
         </li>
        ))}
-         <li key="all" onClick={() => this.handleItemClicked("all")}>
+         <li onClick={() => this.handleItemClicked("all")}>
            <b>See all cities</b>
          </li>
       </ul>
