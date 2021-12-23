@@ -3,15 +3,15 @@ import axios from 'axios';
 import NProgress from 'nprogress';
 
 
-export const extractLocations = (events) => {
-  let extractLocations = events.map((event) => event.location);
+export const extractLocations = events => {
+  let extractLocations = events.map(event => event.location);
   let locations = [...new Set(extractLocations)];
   return locations;
 };
 
 export const checkToken = async (accessToken) => {
   if (window.location.href.startsWith("http://localhost")) {
-        return {};
+        return {mockData};
       }  
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
