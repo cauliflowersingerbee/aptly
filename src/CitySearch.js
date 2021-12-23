@@ -21,12 +21,16 @@ class CitySearch extends Component {
         suggestions: []
       });
     } else {
+
       return this.setState({
         query: value,
         suggestions: suggestions,
         infoText: ''
     });
+   
   };
+ // console.log('handleInputChanged', this.state.showSuggestions);
+ // console.log('handleInputChanged', this.state.suggestions);
 };
 
   handleItemClicked = (suggestion) => {
