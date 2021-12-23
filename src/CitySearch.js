@@ -22,7 +22,7 @@ class CitySearch extends Component {
     } else {
       return this.setState({
         query: value,
-        suggestions: [],
+        suggestions,
         showSuggestions: false,
         infoText: ''
     });
