@@ -27,7 +27,7 @@ export const getEvents = async () => {
 
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
-    return {};
+    return {mockData};
   }
 
   if (!navigator.onLine) {
