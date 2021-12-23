@@ -22,10 +22,10 @@ class Event extends Component {
               {event.start.dateTime} ({event.start.timeZone})
               </p>
               <p className="location">
-                {event.location}
+                {event.location} | {event.summary}
               </p>
         {!collapsed && (
-             <div className={`more-info ${collapsed ? `hidden` : `show`}`}>
+             <div className={`more-info ${collapsed ? `hide` : `show`}`}>
              <h3>About this event:</h3>
              <a href={event.htmlLink} rel="noreferrer" target="_blank">
                See details on Google Calendar
