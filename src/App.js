@@ -9,6 +9,7 @@ import WelcomeScreen from './WelcomeScreen';
 import {ScatterChart, Scatter, XAxis,	YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 import { Container, Row } from 'react-bootstrap';
+import { EventGenre } from './EventGenre';
 
 
 class App extends Component {
@@ -111,6 +112,10 @@ className="App" />
         <Row>
          <h4>Events in each city:</h4>
          
+         <div className="data-vis-wrapper">
+        
+         <EventGenre events={events} />
+
          <ResponsiveContainer height={400} >
          <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -120,7 +125,8 @@ className="App" />
               <Scatter data={this.getData()} fill="#8884d8" />
          </ScatterChart>
          </ResponsiveContainer>
-         
+         </div>
+
          </Row>
          <Row>
          <EventList events={this.state.events} />
