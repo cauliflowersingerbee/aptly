@@ -29,7 +29,7 @@ class Event extends Component {
 						variant="light"
 						size="md"
 						id="eventButton"
-						className={ "show-more btn" `${collapsed ? 'show' : 'hide'}`}
+						className={ `${collapsed ? 'show' : 'hide'}`}
 						onClick={this.handleClick}
 					>
 						{collapsed ? 'Show Details' : 'Hide Details'}
