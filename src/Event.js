@@ -24,9 +24,17 @@ class Event extends Component {
               <p className="location">
                 {event.location}
               </p>
-              <Button variant="primary" className="show-more" onClick={this.handleClick}>
-                    Toggle Details
-              </Button>
+        
+              <Button
+						variant="light"
+						size="md"
+						id="eventButton"
+						className={`${collapsed ? 'show' : 'hide'}-details-btn`}
+						onClick={this.handleClick}
+					>
+						{collapsed ? 'show Details' : 'Hide Details'}
+					</Button>
+              
                 <div className={`more-info ${collapsed ? `hidden` : `show`}`}>
                   <h3>About this event:</h3>
                   <a href={event.htmlLink} rel="noreferrer" target="_blank">
