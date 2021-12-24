@@ -10,6 +10,7 @@ import {ScatterChart, Scatter, XAxis,	YAxis, CartesianGrid, Tooltip, ResponsiveC
 } from 'recharts';
 import { Container, Row } from 'react-bootstrap';
 import  EventGenre  from './EventGenre';
+import logo from './img/aptly-logo.png';
 
 
 class App extends Component {
@@ -71,7 +72,8 @@ class App extends Component {
     if (newVal < 1 || newVal > 20) {
         return this.setState({
         errorText: 'Please enter a value between 1 and 20', 
-        numberOfEvents: '0'
+        numberOfEvents: '0', 
+
       });
     } else {
       this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
@@ -102,6 +104,9 @@ className="App" />
     return (
       
       <Container className="App">
+        <Row>
+        <img src={logo} alt="Aptly logo" style={{height: '5rem', width: '5rem'}}/>
+        </Row>
         <Row>
         <h4>Choose your nearest city</h4>
          <CitySearch locations={locations} updateEvents={this.updateEvents} />
