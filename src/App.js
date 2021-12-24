@@ -104,9 +104,7 @@ className="App" />
     return (
       
       <Container className="App">
-        <Row>
-        <img src={logo} alt="Aptly logo" style={{height: '5rem', width: '5rem'}}/>
-        </Row>
+        <img src={logo} alt="Aptly logo" style={{height: '25rem', width: '25rem'}}/>
         <Row>
         <h4>Choose your nearest city</h4>
          <CitySearch locations={locations} updateEvents={this.updateEvents} />
