@@ -1,4 +1,6 @@
 # aptly
+![aptly](https://user-images.githubusercontent.com/86426968/152054882-9ff516ed-4f13-4e02-af60-7b8cd00e20d6.gif)
+
 A serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. It uses the Google Calendar API to fetch upcoming events.
 
 ## Key Features
